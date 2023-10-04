@@ -19,7 +19,6 @@ public class SenderService {
     public void sendAllMeasurementsToTheBackend() {
         Measurements measurements = simulatorService.getCurrentMeasurements(0);
 
-        System.out.println("Timestamp: " + LocalDateTime.now());
         System.out.println("Measurements:");
         System.out.println(measurements);
 

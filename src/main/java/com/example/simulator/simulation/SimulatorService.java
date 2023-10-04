@@ -3,6 +3,7 @@ package com.example.simulator.simulation;
 import com.example.simulator.data.Measurements;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
@@ -10,6 +11,7 @@ public class SimulatorService {
 
     public Measurements getCurrentMeasurements(int greenhouseId) {
         return Measurements.builder()
+                .timestamp(LocalDateTime.now())
                 .temperature(getCurrentTemperature(greenhouseId))
                 //.humidity(getCurrentHumidity(greenhouseId))
                 //...
