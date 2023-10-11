@@ -12,7 +12,7 @@ public class SimulatorService {
     public Measurements getCurrentMeasurements(int greenhouseId) {
         return Measurements.builder()
                 .timestamp(LocalDateTime.now())
-                .temperature(getCurrentTemperature(greenhouseId))
+                .airTemperature(getCurrentTemperature(greenhouseId))
                 //.humidity(getCurrentHumidity(greenhouseId))
                 //...
                 .build();
@@ -32,4 +32,8 @@ public class SimulatorService {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;
     }
+
+//    private double increaseTemperature(){
+//
+//    }
 }

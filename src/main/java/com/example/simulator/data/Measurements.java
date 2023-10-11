@@ -1,23 +1,25 @@
 package com.example.simulator.data;
 
-import lombok.Builder;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 public class Measurements {
     private LocalDateTime timestamp;
-    private double temperature;
-    //private double humidity;
-    //...
+    private Double airTemperature;
+    private Double humidity;
+    private Double parLevel;
+    private Double co2;
+    private Double substrateWaterLevel;
+    private Double salinityLevel;
+    private Double substrateTemperature;
+    private Double substrateWeight;
+    private Double plantWeight;
+    private Double stemVariability;
 
-    @Override
-    public String toString() {
-        return "{\n" +
-                "\t" + "timestamp=" + timestamp + "\n" +
-                "\t" + "temperature=" + temperature + "\n" +
-                //"\t" + "humidity=" + humidity + "\n" +
-                //...
-                '}';
-    }
 }
