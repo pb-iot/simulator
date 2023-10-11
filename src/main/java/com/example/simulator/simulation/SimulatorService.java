@@ -12,7 +12,7 @@ public class SimulatorService {
     public Measurements getCurrentMeasurements(int greenhouseId) {
         return Measurements.builder()
                 .timestamp(LocalDateTime.now())
-                .temperature(getCurrentTemperature(greenhouseId))
+                .airTemperature(getCurrentTemperature(greenhouseId))
                 //.humidity(getCurrentHumidity(greenhouseId))
                 //...
                 .build();
