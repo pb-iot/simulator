@@ -1,13 +1,24 @@
 package com.example.simulator.simulation;
 
+import com.example.simulator.data.Greenhouse;
 import com.example.simulator.data.Measurements;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
 @Service
 public class SimulatorService {
+
+    private List<Greenhouse> greenhouseList = new ArrayList<>();
+
+    @Scheduled(cron = "0/1 * * * * *")
+    public void fluctuate() {
+        greenhouseList.getFirst().fluctuate();
+    }
 
     public Measurements getCurrentMeasurements(int greenhouseId) {
         return Measurements.builder()
