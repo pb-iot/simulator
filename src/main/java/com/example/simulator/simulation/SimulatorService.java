@@ -7,44 +7,31 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.List;
 
 @Service
 public class SimulatorService {
 
-    private List<Greenhouse> greenhouseList = new ArrayList<>();
+    private HashMap<Integer, Greenhouse> greenhouses = new HashMap<>();
+
+    public SimulatorService() {
+        greenhouses.put(0, new Greenhouse());
+    }
 
     @Scheduled(cron = "0/1 * * * * *")
-    public void fluctuate() {
-        greenhouseList.getFirst().fluctuate();
+    public void simulate() {
+        for (Greenhouse greenhouse : greenhouses.values()) {
+            greenhouse.simulateAll();
+        }
     }
 
     public Measurements getCurrentMeasurements(int greenhouseId) {
-        return Measurements.builder()
-                .timestamp(LocalDateTime.now())
-                .airTemperature(getCurrentTemperature(greenhouseId))
-                //.humidity(getCurrentHumidity(greenhouseId))
-                //...
-                .build();
+        return new Measurements(LocalDateTime.now(), greenhouses.get(greenhouseId).GetCurrentMeasurements());
     }
 
-    private double getCurrentTemperature(int greenhouseId) {
-        Random random = new Random();
-        return round(19 + random.nextDouble() * 2, 1);//generowanie liczb z zakresu od 19 do 21; docelowo do zmiany
+    public Greenhouse getGreenhouse(Integer id) {
+        return greenhouses.get(id);
     }
-
-    /*private double getCurrentHumidity(int greenhouseId) {
-        Random random = new Random();
-        return round(20 + random.nextDouble(), 1);
-    }*/
-
-    private static double round(double value, int precision) {
-        int scale = (int) Math.pow(10, precision);
-        return (double) Math.round(value * scale) / scale;
-    }
-
-//    private double increaseTemperature(){
-//
-//    }
 }
