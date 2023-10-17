@@ -1,8 +1,8 @@
 package com.example.simulator.controller;
 
 import com.example.simulator.data.Measurements;
-import com.example.simulator.data.SetTargetRequestBody;
-import com.example.simulator.data.Targetable;
+import com.example.simulator.data.ChangeTemperatureRequestBody;
+import com.example.simulator.data.sensors.TemperatureSimulation;
 import com.example.simulator.simulation.SimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,12 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.OK).body(simulatorService.getCurrentMeasurements(0));
     }
 
-    @PostMapping(path = "/set-target")
-    public void setTarget(@RequestBody SetTargetRequestBody body) {
+    @PostMapping(path = "/change-temperature")
+    public void raiseTemperature(@RequestBody ChangeTemperatureRequestBody body) {
         var greenhouse = simulatorService.getGreenhouse(body.getGreenhouseId());
 
-        var simulation = (Targetable)greenhouse.getSimulations().get(body.getSensorName());
+        var simulation = (TemperatureSimulation)greenhouse.getSimulations().get("temperature");
 
-        simulation.setTargetValue(body.getTarget());
+        simulation.setChangeValue(body.getValue());
     }
 }

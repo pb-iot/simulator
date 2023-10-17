@@ -13,7 +13,7 @@ public class Greenhouse {
     private HashMap<String, Simulable> simulations = new HashMap<String, Simulable>();
 
     public Greenhouse() {
-        simulations.put("temperature", new TemperatureSimulation(20d, 20d));
+        simulations.put("temperature", new TemperatureSimulation(20d, 20d, 120d));
         //simulations.add(new HumiditySimulation());
         //...
     }

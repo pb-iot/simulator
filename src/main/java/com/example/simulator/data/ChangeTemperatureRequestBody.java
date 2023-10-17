@@ -3,8 +3,7 @@ package com.example.simulator.data;
 import lombok.Data;
 
 @Data
-public class SetTargetRequestBody {
+public class ChangeTemperatureRequestBody {
     private Integer greenhouseId;
-    private String sensorName;
-    private Double target;
+    private Double value;
 }

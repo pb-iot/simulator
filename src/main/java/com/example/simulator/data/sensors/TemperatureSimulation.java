@@ -1,33 +1,42 @@
 package com.example.simulator.data.sensors;
 
 import com.example.simulator.data.Simulable;
-import com.example.simulator.data.Targetable;
 import lombok.*;
 
 import java.util.Random;
 
 @Data
-public class TemperatureSimulation implements Simulable, Targetable {
+public class TemperatureSimulation implements Simulable {
     private Double simulatedValue;
 
-    private Double targetValue;
+    private Double defaultValue;
+
+    private Double maxValue;
+
+    private Double changeValue = 0d;
 
     private Double randomizationValue = 2d;
     private Double changeSpeed = .1;
 
-    public TemperatureSimulation(Double simulatedValue, Double targetValue) {
+    public TemperatureSimulation(Double simulatedValue, Double defaultValue, Double maxValue) {
         this.simulatedValue = simulatedValue;
-        this.targetValue = targetValue;
+        this.defaultValue = defaultValue;
+        this.maxValue = maxValue;
     }
 
     public void triggerSimulation() {
         Random random = new Random();
 
-        var deltaRaw = targetValue - simulatedValue;
+        var deltaRaw = defaultValue - simulatedValue;
 
-        var delta = (deltaRaw * changeSpeed) + ((random.nextDouble() - .5) * randomizationValue);
+        var delta =
+                (deltaRaw * changeSpeed) +
+                ((random.nextDouble() - .5) * randomizationValue) +
+                changeValue;
 
         simulatedValue += round(delta, 1);
+
+        if (simulatedValue > maxValue) simulatedValue = maxValue;
     }
 
     // wyjac do jakiegos utila
