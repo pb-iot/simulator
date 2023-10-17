@@ -1,19 +1,24 @@
 package com.example.simulator.greenhouse.temperature;
 
-import com.example.simulator.greenhouse.temperature.devices.AirConditioning;
+import com.example.simulator.greenhouse.temperature.devices.airConditioning.AirConditioning;
+import com.example.simulator.greenhouse.temperature.devices.airConditioning.AirConditioningState;
 import com.example.simulator.greenhouse.temperature.devices.temperatureSensor.TemperatureSensor;
-import com.example.simulator.greenhouse.temperature.simulator.TemperatureSimulator;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 public class Temperature {
 
-    private TemperatureSensor temperatureSensor = new TemperatureSensor();
+    private final TemperatureSensor temperatureSensor = new TemperatureSensor();
 
-    private AirConditioning airConditioning = new AirConditioning();
+    private final AirConditioning airConditioning = new AirConditioning();
 
-    private TemperatureSimulator temperatureSimulator;
+    public void ACSimulator(double rangeMin, double rangeMax) {
+        double changeTemperature = airConditioning.getTemperatureSimulator(temperatureSensor.getValue(), rangeMin, rangeMax);
 
-
-
+        temperatureSensor.setValue(temperatureSensor.getValue() + changeTemperature);
+        airConditioning.setState(AirConditioningState.TURBO);
+        log.info("Temperature: {}", temperatureSensor.getValue());
+    }
 }

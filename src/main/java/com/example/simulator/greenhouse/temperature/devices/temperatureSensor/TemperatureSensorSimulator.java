@@ -29,18 +29,18 @@ public class TemperatureSensorSimulator {
             WeatherForecast weatherForecast = new WeatherForecast();
             CurrentWeather currentWeather = weatherForecast.getActualTemperature();
 
-            double randomTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP);
+            double changeTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP);
 
             if(currentWeather.getIsDay() == 1) { /* is day */
                 if(currentWeather.getTemperature2m() > temperatureInGreenhouse)
-                    temperatureSensor.setValue(temperatureInGreenhouse + (randomTemperature * GROWN_TEMP_BONUS));
+                    temperatureSensor.setValue(temperatureInGreenhouse + (changeTemperature * GROWN_TEMP_BONUS));
                 else
-                    temperatureSensor.setValue(temperatureInGreenhouse + (randomTemperature * -1 ));
+                    temperatureSensor.setValue(temperatureInGreenhouse + (changeTemperature * -1));
             } else { /* is night */
                 if(currentWeather.getTemperature2m() > temperatureInGreenhouse)
-                    temperatureSensor.setValue(temperatureInGreenhouse + (randomTemperature));
+                    temperatureSensor.setValue(temperatureInGreenhouse + changeTemperature);
                 else
-                    temperatureSensor.setValue(temperatureInGreenhouse + (randomTemperature * -1 * GROWN_TEMP_BONUS));
+                    temperatureSensor.setValue(temperatureInGreenhouse + (changeTemperature * -1 * GROWN_TEMP_BONUS));
             }
         });
     }
