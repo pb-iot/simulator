@@ -2,6 +2,7 @@ package com.example.simulator.controller;
 
 import com.example.simulator.data.Measurements;
 import com.example.simulator.data.SetTargetRequestBody;
+import com.example.simulator.data.Targetable;
 import com.example.simulator.simulation.SimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class MainController {
     public void setTarget(@RequestBody SetTargetRequestBody body) {
         var greenhouse = simulatorService.getGreenhouse(body.getGreenhouseId());
 
-        var simulation = greenhouse.getSimulations().get(body.getSensorName());
+        var simulation = (Targetable)greenhouse.getSimulations().get(body.getSensorName());
 
         simulation.setTargetValue(body.getTarget());
     }

@@ -1,17 +1,15 @@
 package com.example.simulator.data.sensors;
 
-import com.example.simulator.data.DoubleSimulation;
+import com.example.simulator.data.Simulable;
+import com.example.simulator.data.Targetable;
 import lombok.*;
 
 import java.util.Random;
 
 @Data
-public class TemperatureSimulation implements DoubleSimulation {
-    @Getter
+public class TemperatureSimulation implements Simulable, Targetable {
     private Double simulatedValue;
 
-    @Getter
-    @Setter
     private Double targetValue;
 
     private Double randomizationValue = 2d;

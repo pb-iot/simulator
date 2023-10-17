@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class Greenhouse {
-    private HashMap<String, DoubleSimulation> simulations = new HashMap<String, DoubleSimulation>();
+    private HashMap<String, Simulable> simulations = new HashMap<String, Simulable>();
 
     public Greenhouse() {
         simulations.put("temperature", new TemperatureSimulation(20d, 20d));
@@ -19,7 +19,7 @@ public class Greenhouse {
     }
 
     public void simulateAll() {
-        for (DoubleSimulation simulation : simulations.values()) {
+        for (Simulable simulation : simulations.values()) {
             simulation.triggerSimulation();
         }
     }
