@@ -1,6 +1,9 @@
 package com.example.simulator.simulation;
 
 import com.example.simulator.data.Measurements;
+import com.example.simulator.greenhouse.Greenhouse;
+import com.example.simulator.greenhouse.GreenhousesData;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -8,6 +11,15 @@ import java.util.Random;
 
 @Service
 public class SimulatorService {
+
+    @Scheduled(cron = "0/1 * * * * *")
+    public void simulate() {
+        GreenhousesData greenhousesData = GreenhousesData.getInstance();
+
+        for (Greenhouse greenhouse : greenhousesData.getGreenhouseList().values()) {
+            greenhouse.simulateAll();
+        }
+    }
 
     public Measurements getCurrentMeasurements(int greenhouseId) {
         return Measurements.builder()

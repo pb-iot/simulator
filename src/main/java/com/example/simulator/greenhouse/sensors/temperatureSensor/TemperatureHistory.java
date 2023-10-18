@@ -1,4 +1,4 @@
-package com.example.simulator.greenhouse.temperature.devices.temperatureSensor;
+package com.example.simulator.greenhouse.sensors.temperatureSensor;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.example.simulator.greenhouse.temperature.devices.temperatureSensor;
+package com.example.simulator.greenhouse.sensors.temperatureSensor;
 
 import com.example.simulator.utils.forecast.WeatherForecast;
 import com.example.simulator.utils.forecast.data.CurrentWeather;
