@@ -29,17 +29,16 @@ public class TemperatureSimulation implements Simulable {
 
         double changeTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP);
 
-
         if (currentWeather.getIsDay() == 1) { /* is day */
             if (currentWeather.getTemperature2m() > temperatureSensor.getValue())
-                return temperatureSensor.getValue() + (changeTemperature * GROWN_TEMP_BONUS);
+                return (changeTemperature * GROWN_TEMP_BONUS);
             else
-                return temperatureSensor.getValue() + (changeTemperature * -1);
+                return (changeTemperature * -1);
         } else { /* is night */
             if (currentWeather.getTemperature2m() > temperatureSensor.getValue())
-                return temperatureSensor.getValue() + changeTemperature;
+                return changeTemperature;
             else
-                return temperatureSensor.getValue() + (changeTemperature * -1 * GROWN_TEMP_BONUS);
+                return (changeTemperature * -1 * GROWN_TEMP_BONUS);
         }
     }
 
