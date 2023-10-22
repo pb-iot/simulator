@@ -1,5 +1,6 @@
 package com.example.simulator.exceptions;
 
+import com.example.simulator.configurations.response.OperationState;
 import com.example.simulator.configurations.response.ResponseData;
 import com.example.simulator.exceptions.basic.BaseException;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class RestResponseEntityExceptionHandler {
                 timestamp
         );
 
-        ResponseData<ApiException> response = new ResponseData<>(e.getMessage(), apiException);
+        ResponseData<ApiException> response = new ResponseData<>(OperationState.FAILURE, apiException);
         return new ResponseEntity<>(response, httpStatus);
     }
 
@@ -58,7 +59,7 @@ public class RestResponseEntityExceptionHandler {
                 e.getMessage(),
                 timestamp
         );
-        ResponseData<ApiException> response = new ResponseData<>(httpStatus.name(), apiException);
+        ResponseData<ApiException> response = new ResponseData<>(OperationState.FAILURE, apiException);
         return new ResponseEntity<>(response, httpStatus);
     }
 
@@ -80,7 +81,7 @@ public class RestResponseEntityExceptionHandler {
                 e.getMessage(),
                 timestamp
         );
-        ResponseData<ApiException> response = new ResponseData<>(httpStatus.name(), apiException);
+        ResponseData<ApiException> response = new ResponseData<>(OperationState.FAILURE, apiException);
 
         return new ResponseEntity<>(response, httpStatus);
     }

@@ -5,22 +5,22 @@ import lombok.Getter;
 @Getter
 public class ResponseData<T> {
 
-    private final String message;
+    private final OperationState state;
 
     private final T data;
 
     public ResponseData() {
-        this.message = ResponseMessage.SUCCESS.name();
+        this.state = OperationState.SUCCESS;
         this.data = null;
     }
 
     public ResponseData(T data) {
-        this.message = ResponseMessage.SUCCESS.name();
+        this.state = OperationState.SUCCESS;
         this.data = data;
     }
 
-    public ResponseData(String message, T data) {
-        this.message = message;
+    public ResponseData(OperationState operationState, T data) {
+        this.state = operationState;
         this.data = data;
     }
 }
