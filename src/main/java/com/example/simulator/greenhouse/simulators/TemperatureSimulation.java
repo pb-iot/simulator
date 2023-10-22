@@ -1,9 +1,12 @@
 package com.example.simulator.greenhouse.simulators;
 
+import com.example.simulator.DTOs.AirConditioningDTO;
 import com.example.simulator.greenhouse.devices.airConditioning.AirConditioning;
 import com.example.simulator.greenhouse.sensors.temperatureSensor.TemperatureSensor;
 import com.example.simulator.utils.forecast.WeatherForecast;
 import com.example.simulator.utils.forecast.data.CurrentWeather;
+
+import java.util.Objects;
 
 import static com.example.simulator.utils.random.RandomGenerator.generateRandomDouble;
 
@@ -46,6 +49,14 @@ public class TemperatureSimulation implements Simulable {
         double randomTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
 
         return randomTemperature * airConditioning.getAction().getAction();
+    }
+
+    public void setAC(AirConditioningDTO airConditioningDTO) {
+        if (Objects.nonNull(airConditioningDTO.getAction()))
+            airConditioning.setAction(airConditioningDTO.getAction());
+
+        if (Objects.nonNull(airConditioningDTO.getPowerLevel()))
+            airConditioning.setPowerLevel(airConditioningDTO.getPowerLevel());
     }
 
     @Override

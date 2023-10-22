@@ -36,20 +36,23 @@ public class Greenhouse {
     }
 
     public void breakup(SimulationType simulationType) {
-        Simulable simulable = simulations.get(simulationType);
-        if (Objects.isNull(simulable))
-            throw new BasicBadRequestException(NO_SENSOR);
+        getSimulation(simulationType);
 
         simulations.remove(simulationType);
     }
 
     public SensorValueDTO getSensorsValue(SimulationType simulationType) {
-        Simulable simulable = simulations.get(simulationType);
-        if (Objects.isNull(simulable))
-            throw new BasicBadRequestException(NO_SENSOR);
+        Simulable simulable = getSimulation(simulationType);
 
         return SensorValueDTO.builder()
                 .value(simulable.getSimulatedValue())
                 .build();
+    }
+
+    public Simulable getSimulation(SimulationType simulationType) {
+        Simulable simulable = simulations.get(simulationType);
+        if (Objects.isNull(simulable))
+            throw new BasicBadRequestException(NO_SENSOR);
+        return simulable;
     }
 }

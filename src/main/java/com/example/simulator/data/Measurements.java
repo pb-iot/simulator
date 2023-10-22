@@ -1,17 +1,23 @@
 package com.example.simulator.data;
 
+import com.example.simulator.DTOs.AirTemperatureDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Builder
+
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Measurements {
     private LocalDateTime timestamp;
-    private Double airTemperature;
+    private AirTemperatureDTO airTemperature;
+
+
+    /*
     private Double humidity;
     private Double parLevel;
     private Double co2;
@@ -21,5 +27,7 @@ public class Measurements {
     private Double substrateWeight;
     private Double plantWeight;
     private Double stemVariability;
+
+    */
 
 }
