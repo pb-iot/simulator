@@ -12,7 +12,7 @@ public class TemperatureSensor {
 
     private final int LIMIT_HISTORY_SIZE = 100;
 
-    private final List<TemperatureHistory> temperatureHistories = new ArrayList<>();
+    private final List<TemperatureHistoryEntry> temperatureHistory = new ArrayList<>();
     private double value;
 
     public TemperatureSensor() {
@@ -20,18 +20,18 @@ public class TemperatureSensor {
         CurrentWeather currentWeather = weatherForecast.getActualTemperature();
 
         this.value = currentWeather.getTemperature2m();
-        addTemperatureHistory(this.value);
+        addTemperatureHistoryEntry(this.value);
     }
 
     public void setValue(Double value) {
         this.value = value;
-        addTemperatureHistory(value);
+        addTemperatureHistoryEntry(value);
     }
 
-    private void addTemperatureHistory(double temperature){
-        if(temperatureHistories.size() >= LIMIT_HISTORY_SIZE)
-            temperatureHistories.remove(0);
+    private void addTemperatureHistoryEntry(double temperature){
+        if(temperatureHistory.size() >= LIMIT_HISTORY_SIZE)
+            temperatureHistory.remove(0);
 
-        temperatureHistories.add(new TemperatureHistory(temperature));
+        temperatureHistory.add(new TemperatureHistoryEntry(temperature));
     }
 }

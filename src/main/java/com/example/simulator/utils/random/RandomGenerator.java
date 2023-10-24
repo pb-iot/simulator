@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    public static int generateRandomNumber(int min, int max) {
+    public static int generateRandomIntegerFromRange(int min, int max) {
         if (min > max) {
             throw new IllegalArgumentException();
         }
@@ -13,7 +13,7 @@ public class RandomGenerator {
         return random.nextInt(max - min + 1) + min;
     }
 
-    public static double generateRandomDouble(double min, double max) {
+    public static double generateRandomDoubleFromRange(double min, double max) {
         if (min > max) {
             throw new IllegalArgumentException();
         }

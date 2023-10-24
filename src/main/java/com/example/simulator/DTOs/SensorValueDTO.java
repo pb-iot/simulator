@@ -9,5 +9,5 @@ import lombok.*;
 @AllArgsConstructor
 public class SensorValueDTO {
 
-    private Object value;
+    private Double value;
 }

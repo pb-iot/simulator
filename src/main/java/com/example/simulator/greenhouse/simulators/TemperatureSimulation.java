@@ -8,7 +8,7 @@ import com.example.simulator.utils.forecast.data.CurrentWeather;
 
 import java.util.Objects;
 
-import static com.example.simulator.utils.random.RandomGenerator.generateRandomDouble;
+import static com.example.simulator.utils.random.RandomGenerator.generateRandomDoubleFromRange;
 
 public class TemperatureSimulation implements Simulable {
     private final double RANGE_MIN_TEMP = 0.05;
@@ -30,7 +30,7 @@ public class TemperatureSimulation implements Simulable {
         WeatherForecast weatherForecast = new WeatherForecast();
         CurrentWeather currentWeather = weatherForecast.getActualTemperature();
 
-        double changeTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP);
+        double changeTemperature = generateRandomDoubleFromRange(RANGE_MIN_TEMP, RANGE_MAX_TEMP);
 
         if (currentWeather.getIsDay() == 1) { /* is day */
             if (currentWeather.getTemperature2m() > temperatureSensor.getValue())
@@ -46,7 +46,7 @@ public class TemperatureSimulation implements Simulable {
     }
 
     private double getAirConditioningChange() {
-        double randomTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
+        double randomTemperature = generateRandomDoubleFromRange(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
 
         return randomTemperature * airConditioning.getAction().getAction();
     }

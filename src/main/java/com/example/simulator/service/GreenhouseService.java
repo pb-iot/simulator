@@ -37,6 +37,4 @@ public class GreenhouseService {
         TemperatureSimulation temperatureSimulation = (TemperatureSimulation) greenhouse.getSimulation(SimulationType.TEMPERATURE);
         temperatureSimulation.setAirConditioningValue(airConditioningDTO);
     }
-
-
 }

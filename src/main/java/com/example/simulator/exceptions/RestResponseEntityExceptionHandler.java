@@ -21,7 +21,7 @@ import java.time.Instant;
 public class RestResponseEntityExceptionHandler {
 
     /**
-     * It catches all exceptions BaseException
+     * Catches all "BaseException" exceptions.
      */
     @ExceptionHandler(value = {BaseException.class})
     public ResponseEntity<Object> BaseException(BaseException e) {

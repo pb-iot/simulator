@@ -8,12 +8,12 @@ import java.time.Instant;
 
 @Getter
 @Setter
-public class TemperatureHistory {
+public class TemperatureHistoryEntry {
     private double temperature;
 
     private Timestamp timestamp = Timestamp.from(Instant.now());
 
-    public TemperatureHistory(double temperature){
+    public TemperatureHistoryEntry(double temperature){
         this.temperature = temperature;
     }
 }
