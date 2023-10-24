@@ -6,13 +6,17 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 
+/**
+ * Klasa trzymająca wartości wszystkich odczytów symulacji (np. sensor temperatury)
+ * wraz ze stanami urządzeń zmieniających te wartości (np. klimatyzacja).
+ */
 @Getter
 @Setter
 @ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Measurements {
+public class SensorsMeasurementsWithRegulatingDevicesStatesDTO {
     private LocalDateTime timestamp;
     private AirTemperatureDTO airTemperature;
 

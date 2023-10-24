@@ -18,28 +18,30 @@ public class GreenhouseController {
     @Autowired
     private GreenhouseService greenhouseService;
 
-    @PostMapping(path = "/installation", produces = "application/json")
-    public ResponseEntity<?> installSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
-        greenhouseService.installSimulation(greenhouseId, type);
+    @PostMapping(path = "/addSimulation", produces = "application/json")
+    public ResponseEntity<?> addSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
+        greenhouseService.addSimulation(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseData<>());
     }
 
-    @DeleteMapping(path = "/breakup", produces = "application/json")
-    public ResponseEntity<?> breakupSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
-        greenhouseService.breakupSimulation(greenhouseId, type);
+    @DeleteMapping(path = "/deleteSimulation", produces = "application/json")
+    public ResponseEntity<?> deleteSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
+        greenhouseService.deleteSimulation(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
 
-    @GetMapping(path = "/value", produces = "application/json")
+    @GetMapping(path = "/getSimulationValue", produces = "application/json")
     public ResponseEntity<?> getSimulationValue(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
         SensorValueDTO data = greenhouseService.getSimulationValue(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>(data));
     }
 
-    @PutMapping(path = "/temperature", produces = "application/json")
-    public ResponseEntity<?> setTemperatureSimulation(@PathVariable Integer greenhouseId, @Validated @RequestBody AirConditioningDTO airConditioningDTO) {
-        greenhouseService.setTemperatureSimulation(greenhouseId, airConditioningDTO);
+    @PutMapping(path = "/setAirConditioningValue", produces = "application/json")
+    public ResponseEntity<?> setAirConditioningValue(@PathVariable Integer greenhouseId, @Validated @RequestBody AirConditioningDTO airConditioningDTO) {
+        greenhouseService.setAirConditioningValue(greenhouseId, airConditioningDTO);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
+
+    // TODO: 24/10/2023 dodać zbiorczy endpoint dla odczytów wszystkich szklarni na raz
 }
 

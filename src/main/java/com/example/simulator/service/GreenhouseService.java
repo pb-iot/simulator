@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 public class GreenhouseService {
 
 
-    public void installSimulation(Integer greenhouseId, SimulationType type) {
+    public void addSimulation(Integer greenhouseId, SimulationType type) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
-        greenhouse.install(type);
+        greenhouse.addSimulation(type);
     }
 
 
-    public void breakupSimulation(Integer greenhouseId, SimulationType type) {
+    public void deleteSimulation(Integer greenhouseId, SimulationType type) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
-        greenhouse.breakup(type);
+        greenhouse.deleteSimulation(type);
     }
 
     public SensorValueDTO getSimulationValue(Integer greenhouseId, SimulationType type) {
@@ -31,11 +31,11 @@ public class GreenhouseService {
         return greenhouse.getSensorsValue(type);
     }
 
-    public void setTemperatureSimulation(Integer greenhouseId, AirConditioningDTO airConditioningDTO) {
+    public void setAirConditioningValue(Integer greenhouseId, AirConditioningDTO airConditioningDTO) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
         TemperatureSimulation temperatureSimulation = (TemperatureSimulation) greenhouse.getSimulation(SimulationType.TEMPERATURE);
-        temperatureSimulation.setAC(airConditioningDTO);
+        temperatureSimulation.setAirConditioningValue(airConditioningDTO);
     }
 
 

@@ -45,7 +45,8 @@ public abstract class BaseException extends RuntimeException {
     private void logStackTrace() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         StackTraceElement callingMethod = getCallingMethod(stackTrace);
-        if (Objects.nonNull(callingMethod))
+        if (Objects.nonNull(callingMethod)) {
             log.warn("Exception thrown from {} in {} at line {}", callingMethod.getClassName(), callingMethod.getMethodName(), callingMethod.getLineNumber());
+        }
     }
 }

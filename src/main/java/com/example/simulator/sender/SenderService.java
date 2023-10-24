@@ -1,12 +1,9 @@
 package com.example.simulator.sender;
 
-import com.example.simulator.data.Measurements;
 import com.example.simulator.simulation.SimulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 public class SenderService {

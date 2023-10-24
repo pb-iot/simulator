@@ -9,8 +9,8 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static com.example.simulator.configurations.response.ResponseMessage.ALREADY_INSTALLED;
-import static com.example.simulator.configurations.response.ResponseMessage.NO_SENSOR;
+import static com.example.simulator.configurations.response.ResponseMessage.SIMULATION_ALREADY_ADDED;
+import static com.example.simulator.configurations.response.ResponseMessage.SIMULATION_OF_GIVEN_TYPE_DOES_NOT_EXIST;
 
 @Getter
 public class Greenhouse {
@@ -27,15 +27,18 @@ public class Greenhouse {
         }
     }
 
-    public void install(SimulationType simulationType) {
+    public void addSimulation(SimulationType simulationType) {
         Simulable simulable = simulations.get(simulationType);
-        if (Objects.nonNull(simulable))
-            throw new BasicBadRequestException(ALREADY_INSTALLED);
 
-        simulations.put(simulationType, simulationType.install());
+        //Jeśli taka symulacja już istnieje, to rzucamy wyjątek
+        if (Objects.nonNull(simulable)) {
+            throw new BasicBadRequestException(SIMULATION_ALREADY_ADDED);
+        }
+
+        simulations.put(simulationType, simulationType.getSimulable());
     }
 
-    public void breakup(SimulationType simulationType) {
+    public void deleteSimulation(SimulationType simulationType) {
         getSimulation(simulationType);
 
         simulations.remove(simulationType);
@@ -51,8 +54,11 @@ public class Greenhouse {
 
     public Simulable getSimulation(SimulationType simulationType) {
         Simulable simulable = simulations.get(simulationType);
-        if (Objects.isNull(simulable))
-            throw new BasicBadRequestException(NO_SENSOR);
+
+        //Jeśli nie istnieje taka symulacja, to rzucamy wyjątek
+        if (Objects.isNull(simulable)) {
+            throw new BasicBadRequestException(SIMULATION_OF_GIVEN_TYPE_DOES_NOT_EXIST);
+        }
         return simulable;
     }
 }

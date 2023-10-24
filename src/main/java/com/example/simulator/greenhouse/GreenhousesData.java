@@ -31,7 +31,7 @@ public class GreenhousesData {
         if (Objects.nonNull(greenhouse))
             return greenhouse;
 
-        throw new BasicNotFoundException(ResponseMessage.GREENHOUSE_NOT_EXISTS);
+        throw new BasicNotFoundException(ResponseMessage.GREENHOUSE_DOES_NOT_EXIST);
     }
 
     public HashMap<Integer, Greenhouse> getGreenhouseList() {

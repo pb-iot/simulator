@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 public enum SimulationType {
     TEMPERATURE(TemperatureSimulation::new);
+    //HUMIDITY...
 
     private final Supplier<Simulable> simulationSupplier;
 
@@ -12,7 +13,7 @@ public enum SimulationType {
     }
 
 
-    public Simulable install() {
+    public Simulable getSimulable() {
         return simulationSupplier.get();
     }
 }

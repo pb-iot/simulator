@@ -21,7 +21,7 @@ public class TemperatureSimulation implements Simulable {
 
     @Override
     public void triggerSimulation() {
-        double changeTemperature = getSensorChange() + getACChange();
+        double changeTemperature = getSensorChange() + getAirConditioningChange();
 
         temperatureSensor.setValue(temperatureSensor.getValue() + changeTemperature);
     }
@@ -45,13 +45,13 @@ public class TemperatureSimulation implements Simulable {
         }
     }
 
-    private double getACChange() {
+    private double getAirConditioningChange() {
         double randomTemperature = generateRandomDouble(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
 
         return randomTemperature * airConditioning.getAction().getAction();
     }
 
-    public void setAC(AirConditioningDTO airConditioningDTO) {
+    public void setAirConditioningValue(AirConditioningDTO airConditioningDTO) {
         if (Objects.nonNull(airConditioningDTO.getAction()))
             airConditioning.setAction(airConditioningDTO.getAction());
 
