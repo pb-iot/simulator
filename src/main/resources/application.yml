@@ -1,2 +1,17 @@
 server:
   port: 8080
+
+simulator:
+  swagger:
+    server:
+      url: http://localhost:8080
+    info:
+      title: simulation
+      description: description
+      version: 1
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /
