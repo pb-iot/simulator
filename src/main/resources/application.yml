@@ -4,11 +4,12 @@ server:
 simulator:
   swagger:
     server:
-      url: http://localhost:8080
+      url: https://gm-sim.wvffle.net
+      local-url: http://localhost:8080
     info:
-      title: simulation
-      description: description
-      version: 1
+      title: Simulator
+      description: Available endpoints
+      version: v1
 springdoc:
   api-docs:
     enabled: true
