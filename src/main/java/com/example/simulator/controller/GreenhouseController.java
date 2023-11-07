@@ -19,25 +19,25 @@ public class GreenhouseController {
     private GreenhouseService greenhouseService;
 
     @PostMapping(path = "/addSimulation", produces = "application/json")
-    public ResponseEntity<?> addSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
+    public ResponseEntity<ResponseData> addSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
         greenhouseService.addSimulation(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseData<>());
     }
 
     @DeleteMapping(path = "/deleteSimulation", produces = "application/json")
-    public ResponseEntity<?> deleteSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
+    public ResponseEntity<ResponseData> deleteSimulation(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
         greenhouseService.deleteSimulation(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
 
     @GetMapping(path = "/getSimulationValue", produces = "application/json")
-    public ResponseEntity<?> getSimulationValue(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
+    public ResponseEntity<ResponseData<SensorValueDTO>> getSimulationValue(@PathVariable Integer greenhouseId, @RequestParam SimulationType type) {
         SensorValueDTO data = greenhouseService.getSimulationValue(greenhouseId, type);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>(data));
     }
 
     @PutMapping(path = "/setAirConditioningValue", produces = "application/json")
-    public ResponseEntity<?> setAirConditioningValue(@PathVariable Integer greenhouseId, @Validated @RequestBody AirConditioningDTO airConditioningDTO) {
+    public ResponseEntity<ResponseData> setAirConditioningValue(@PathVariable Integer greenhouseId, @Validated @RequestBody AirConditioningDTO airConditioningDTO) {
         greenhouseService.setAirConditioningValue(greenhouseId, airConditioningDTO);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
