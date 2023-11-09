@@ -1,17 +1,27 @@
 package com.example.simulator.data;
 
+import com.example.simulator.DTOs.AirTemperatureDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Builder
+
+/**
+ * Klasa trzymająca wartości wszystkich odczytów symulacji (np. sensor temperatury)
+ * wraz ze stanami urządzeń zmieniających te wartości (np. klimatyzacja).
+ */
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
-public class Measurements {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class SensorsMeasurementsWithRegulatingDevicesStatesDTO {
     private LocalDateTime timestamp;
-    private Double airTemperature;
+    private AirTemperatureDTO airTemperature;
+
+
+    /*
     private Double humidity;
     private Double parLevel;
     private Double co2;
@@ -21,5 +31,7 @@ public class Measurements {
     private Double substrateWeight;
     private Double plantWeight;
     private Double stemVariability;
+
+    */
 
 }
