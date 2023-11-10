@@ -1,0 +1,23 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and publish a Docker image for ${{ github.repository }}
+        uses: macbre/push-to-ghcr@master
+        with:
+          image_name: pb-iot/greenhouse-manager-sim
+          github_token: ${{ secrets.GITHUB_TOKEN }}
