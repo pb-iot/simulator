@@ -1,2 +1,18 @@
 server:
   port: 8080
+
+simulator:
+  swagger:
+    server:
+      url: https://gm-sim.wvffle.net
+      local-url: http://localhost:8080
+    info:
+      title: Simulator
+      description: Available endpoints
+      version: v1
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /
