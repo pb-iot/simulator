@@ -1,10 +1,8 @@
 package com.example.simulator.greenhouse.simulators;
 
-import com.example.simulator.DTOs.AirConditioningDTO;
-import com.example.simulator.greenhouse.devices.airConditioning.AirConditioning;
+import com.example.simulator.DTOs.UpdateHumidifierDTO;
 import com.example.simulator.greenhouse.devices.humidifier.Humidifier;
 import com.example.simulator.greenhouse.sensors.humiditySensor.HumiditySensor;
-import com.example.simulator.greenhouse.sensors.temperatureSensor.TemperatureSensor;
 import com.example.simulator.utils.forecast.WeatherForecast;
 import com.example.simulator.utils.forecast.data.CurrentWeather;
 
@@ -13,6 +11,8 @@ import java.util.Objects;
 import static com.example.simulator.utils.random.RandomGenerator.generateRandomDoubleFromRange;
 
 public class HumiditySimulation implements Simulable {
+    private final double RANGE_MIN = 0.05;
+    private final double RANGE_MAX = 0.40;
 
     private final Humidifier humidifier = new Humidifier();
 
@@ -30,14 +30,22 @@ public class HumiditySimulation implements Simulable {
         WeatherForecast weatherForecast = new WeatherForecast();
         CurrentWeather currentWeather = weatherForecast.getHumidity();
 
-        return 0;
+        double changeTemperature = generateRandomDoubleFromRange(RANGE_MIN, RANGE_MAX);
+
+        if (currentWeather.getHumidity2m() > sensor.getValue()) {
+            return changeTemperature;
+        } else {
+            return changeTemperature * -1;
+        }
     }
 
     private double getHumidifierChange() {
-        return 0;
+        return generateRandomDoubleFromRange(RANGE_MIN, RANGE_MAX) * humidifier.getPowerLevel().getGrownBonus();
     }
 
-    public void setHumidifierValue() {
+    public void setHumidifierValue(UpdateHumidifierDTO dto) {
+        if (Objects.nonNull(dto.getPowerLevel()))
+            humidifier.setPowerLevel(dto.getPowerLevel());
     }
 
     @Override

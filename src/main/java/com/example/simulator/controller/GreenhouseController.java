@@ -2,6 +2,7 @@ package com.example.simulator.controller;
 
 import com.example.simulator.DTOs.AirConditioningDTO;
 import com.example.simulator.DTOs.SensorValueDTO;
+import com.example.simulator.DTOs.UpdateHumidifierDTO;
 import com.example.simulator.configurations.response.ResponseData;
 import com.example.simulator.greenhouse.simulators.SimulationType;
 import com.example.simulator.service.GreenhouseService;
@@ -67,6 +68,18 @@ public class GreenhouseController {
     @PutMapping(path = "/setAirConditioningValue", produces = "application/json")
     public ResponseEntity<ResponseData> setAirConditioningValue(@PathVariable Integer greenhouseId, @Validated @RequestBody AirConditioningDTO airConditioningDTO) {
         greenhouseService.setAirConditioningValue(greenhouseId, airConditioningDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = "SIMULATION_OF_GIVEN_TYPE_DOES_NOT_EXIST"),
+            @ApiResponse(responseCode = "404", description = "GREENHOUSE_DOES_NOT_EXIST")
+    })
+    @Operation(summary = "It is used to manage the humidity in the greenhouse")
+    @PutMapping(path = "/setHumidityValue", produces = "application/json")
+    public ResponseEntity<ResponseData> setHumidityValue(@PathVariable Integer greenhouseId, @Validated @RequestBody UpdateHumidifierDTO dto) {
+        greenhouseService.setHumidityValue(greenhouseId, dto);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
 

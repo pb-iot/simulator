@@ -3,8 +3,8 @@ package com.example.simulator.greenhouse.simulators;
 import java.util.function.Supplier;
 
 public enum SimulationType {
-    TEMPERATURE(TemperatureSimulation::new);
-    //HUMIDITY...
+    TEMPERATURE(TemperatureSimulation::new),
+    HUMIDITY(HumiditySimulation::new);
 
     private final Supplier<Simulable> simulationSupplier;
 
