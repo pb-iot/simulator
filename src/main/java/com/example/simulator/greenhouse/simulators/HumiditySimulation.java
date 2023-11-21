@@ -23,7 +23,13 @@ public class HumiditySimulation implements Simulable {
     public void triggerSimulation() {
         double changeHumidity = getSensorChange() + getHumidifierChange();
 
-        sensor.setValue(sensor.getValue() + changeHumidity);
+        if (sensor.getValue() + changeHumidity > 100) {
+            sensor.setValue(100d);
+        } else if (sensor.getValue() + changeHumidity < 0) {
+            sensor.setValue(0d);
+        } else {
+            sensor.setValue(sensor.getValue() + changeHumidity);
+        }
     }
 
     private double getSensorChange() {
