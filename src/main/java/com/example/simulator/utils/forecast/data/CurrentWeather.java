@@ -15,6 +15,8 @@ public class CurrentWeather {
     private int interval;
     @SerializedName("temperature_2m")
     private double temperature2m;
+    @SerializedName("relative_humidity_2m")
+    private double humidity2m;
     private double apparentTemperature;
     private int isDay;
 }
