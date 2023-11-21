@@ -38,4 +38,25 @@ public class WeatherForecast {
         }
         throw new WeatherForecastException();
     }
+
+    public CurrentWeather getHumidity() {
+        try{
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create();
+
+            HttpResponse<String> response = Unirest.get(urlForecast)
+                    .queryString("latitude", latitude)
+                    .queryString("longitude", longitude)
+                    .queryString("current", "relative_humidity_2m")
+                    .asString();
+
+            String stringBody = response.getBody();
+            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
+            return weatherData.getCurrent();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        throw new WeatherForecastException();
+    }
 }

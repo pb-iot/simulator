@@ -2,8 +2,10 @@ package com.example.simulator.service;
 
 import com.example.simulator.DTOs.AirConditioningDTO;
 import com.example.simulator.DTOs.SensorValueDTO;
+import com.example.simulator.DTOs.UpdateHumidifierDTO;
 import com.example.simulator.greenhouse.Greenhouse;
 import com.example.simulator.greenhouse.GreenhousesData;
+import com.example.simulator.greenhouse.simulators.HumiditySimulation;
 import com.example.simulator.greenhouse.simulators.SimulationType;
 import com.example.simulator.greenhouse.simulators.TemperatureSimulation;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,12 @@ public class GreenhouseService {
 
         TemperatureSimulation temperatureSimulation = (TemperatureSimulation) greenhouse.getSimulation(SimulationType.TEMPERATURE);
         temperatureSimulation.setAirConditioningValue(airConditioningDTO);
+    }
+
+    public void setHumidityValue(Integer greenhouseId, UpdateHumidifierDTO dto) {
+        Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
+
+        HumiditySimulation simulation = (HumiditySimulation) greenhouse.getSimulation(SimulationType.HUMIDITY);
+        simulation.setHumidifierValue(dto);
     }
 }
