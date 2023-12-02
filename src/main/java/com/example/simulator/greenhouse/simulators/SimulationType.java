@@ -4,7 +4,8 @@ import java.util.function.Supplier;
 
 public enum SimulationType {
     TEMPERATURE(TemperatureSimulation::new),
-    HUMIDITY(HumiditySimulation::new);
+    HUMIDITY(HumiditySimulation::new),
+    WATER(WaterSimulation::new);
 
     private final Supplier<Simulable> simulationSupplier;
 
