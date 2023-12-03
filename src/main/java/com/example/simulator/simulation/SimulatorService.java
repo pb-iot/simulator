@@ -15,8 +15,4 @@ public class SimulatorService {
         greenhousesData.getGreenhouseList().values()
                 .forEach(Greenhouse::simulateAll);
     }
-
-//    private double increaseTemperature(){
-//
-//    }
 }
