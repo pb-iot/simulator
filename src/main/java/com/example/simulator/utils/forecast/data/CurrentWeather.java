@@ -19,4 +19,7 @@ public class CurrentWeather {
     private double humidity2m;
     private double apparentTemperature;
     private int isDay;
+    private double shortwaveRadiation;
+    private double direct_radiation;
+    private double diffuse_radiation;
 }
