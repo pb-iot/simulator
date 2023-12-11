@@ -19,7 +19,13 @@ public class CurrentWeather {
     private double humidity2m;
     private double apparentTemperature;
     private int isDay;
+
+    @SerializedName("shortwave_radiation")
     private double shortwaveRadiation;
-    private double direct_radiation;
-    private double diffuse_radiation;
+
+    @SerializedName("direct_radiation")
+    private double directRadiation;
+
+    @SerializedName("diffuse_radiation")
+    private double diffuseRadiation;
 }

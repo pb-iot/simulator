@@ -1,31 +1,33 @@
 package com.example.simulator.greenhouse.sensors.parSensor;
 
 import com.example.simulator.utils.forecast.WeatherForecast;
+import com.example.simulator.utils.forecast.data.CurrentWeather;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ParSensor {
-
-    private double value;
+    
+    private double parValue;
 
     public ParSensor() {
-        WeatherForecast weatherForecast = new WeatherForecast();
-
+        updateParValue();
     }
 
-    public double calculatePAR(double shortwaveRadiation, double directRadiation, double diffuseRadiation) {
+    public void updateParValue() {
+        WeatherForecast weatherForecast = new WeatherForecast();
+        CurrentWeather currentWeather = weatherForecast.getParData();
 
-        // shortwave_radiation - Preceding 15 minutes mean - W/m²
-        double parShortwave = shortwaveRadiation;
+        double parShortwave = currentWeather.getShortwaveRadiation();
 
         // direct_radiation - Preceding 15 minutes mean - W/m²
-        double parDirect = (directRadiation >= 400 && directRadiation <= 700) ? directRadiation : 0;
+        double parDirect = currentWeather.getDirectRadiation();
 
         // diffuse_radiation - Preceding 15 minutes mean - W/m²
-        double parDiffuse = (diffuseRadiation >= 400 && diffuseRadiation <= 700) ? diffuseRadiation : 0;
+        double parDiffuse = currentWeather.getDiffuseRadiation();
 
-        // Współczynnik PAR to suma radiacji w zakresie fotosyntetycznym.
-        double par = parShortwave + parDirect + parDiffuse;
-
-        return par;
+        parValue = parShortwave + parDirect + parDiffuse;
     }
 }
 

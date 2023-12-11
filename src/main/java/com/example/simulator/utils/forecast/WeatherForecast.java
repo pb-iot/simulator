@@ -14,8 +14,8 @@ public class WeatherForecast {
     public static final String urlForecast = "https://api.open-meteo.com/v1/forecast";
 
     // TODO: latitude and longitude move to greenhouse
-    public static final Double latitude = 53.1221;
-    public static final Double longitude = 23.1443;
+    public static final Double latitude = 25.2744; // 53.1221 - Białystok, 25.2744 - Australia
+    public static final Double longitude = 133.7751; // 23.1443 - Białystok, 133.7751 - Australia
 
 
     public CurrentWeather getActualTemperature() {
@@ -59,7 +59,6 @@ public class WeatherForecast {
         }
         throw new WeatherForecastException();
     }
-
     public CurrentWeather getParData() {
         try{
             Gson gson = new GsonBuilder()
