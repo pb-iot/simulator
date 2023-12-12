@@ -20,8 +20,9 @@ public class ParSimulation implements Simulable{
 
     @Override
     public void triggerSimulation() {
-        double changePar = getSimulatedValue() + getLightChange();
-        double newValue = changePar > MAX_VALUE ? MAX_VALUE : changePar;
+        parSensor.updateParValue();
+        double simulatedValue = parSensor.getParValue() + getLightChange();
+        double newValue = simulatedValue > MAX_VALUE ? MAX_VALUE : simulatedValue;
 
         parSensor.setParValue(newValue);
     }
@@ -40,7 +41,6 @@ public class ParSimulation implements Simulable{
 
     @Override
     public Double getSimulatedValue() {
-        parSensor.updateParValue();
         return parSensor.getParValue();
     }
 }
