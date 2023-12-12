@@ -19,12 +19,13 @@ public class ParSensor {
         WeatherForecast weatherForecast = new WeatherForecast();
         CurrentWeather currentWeather = weatherForecast.getParData();
 
+        // shortwave_radiation - Preceding hour minutes mean - W/m²
         double parShortwave = currentWeather.getShortwaveRadiation();
 
-        // direct_radiation - Preceding 15 minutes mean - W/m²
+        // direct_radiation - Preceding hour minutes mean - W/m²
         double parDirect = currentWeather.getDirectRadiation();
 
-        // diffuse_radiation - Preceding 15 minutes mean - W/m²
+        // diffuse_radiation - Preceding hour minutes mean - W/m²
         double parDiffuse = currentWeather.getDiffuseRadiation();
 
         parValue = parShortwave + parDirect + parDiffuse;
