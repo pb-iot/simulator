@@ -13,33 +13,25 @@ import static com.example.simulator.utils.random.RandomGenerator.generateRandomD
 
 public class ParSimulation implements Simulable{
 
-    private final double MAX_VALUE = 400.00;
-    private final double MIN_VALUE = 0;
+    private final double MAX_VALUE = 2500;
 
     private final ParSensor parSensor = new ParSensor();
     private final Light light = new Light();
 
     @Override
     public void triggerSimulation() {
-        double changePar = getSensorChange();
+        double changePar = getSimulatedValue() + getLightChange();
+        double newValue = changePar > MAX_VALUE ? MAX_VALUE : changePar;
 
-        parSensor.setParValue(0.00);
-    }
-
-    private double getSensorChange() {
-        if(light.getState().getState() == LightState.ON.getState()) {
-            return generateRandomDoubleFromRange(0, 1);
-        }
-        return 0;
+        parSensor.setParValue(newValue);
     }
 
     private double getLightChange() {
         if(light.getState().getState() == LightState.ON.getState()) {
-            return generateRandomDoubleFromRange(0, 1);
+            return generateRandomDoubleFromRange(2000, 2100);
         }
-        return 0;
+        else return 0;
     }
-
 
     public void setLightSwitch(LightDTO dto) {
         if (Objects.nonNull(dto.getLightState()))
