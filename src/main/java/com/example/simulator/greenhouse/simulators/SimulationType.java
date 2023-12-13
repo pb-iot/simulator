@@ -6,6 +6,7 @@ public enum SimulationType {
     TEMPERATURE(TemperatureSimulation::new),
     HUMIDITY(HumiditySimulation::new),
     WATER(WaterSimulation::new),
+    TEMPERATURE_SOIL(TemperatureSoilSimulation::new),
     PAR(ParSimulation::new);
 
     private final Supplier<Simulable> simulationSupplier;
