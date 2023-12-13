@@ -50,10 +50,17 @@ public class GreenhouseService {
         simulation.setWaterLevel(dto);
     }
 
-    public void setLight(Integer greenhouseId, LightDTO dto){
+    public void setLight(Integer greenhouseId, LightDTO dto) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
         ParSimulation simulation = (ParSimulation) greenhouse.getSimulation(SimulationType.PAR);
         simulation.setLightSwitch(dto);
+    }
+
+    public void setUnderfloorHeating(Integer greenhouseId, UnderfloorHeatingDTO dto) {
+        Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
+
+        TemperatureSoilSimulation simulation = (TemperatureSoilSimulation) greenhouse.getSimulation(SimulationType.TEMPERATURE_SOIL);
+        simulation.setUnderfloorHeatingOptions(dto);
     }
 }
