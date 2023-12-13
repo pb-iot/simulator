@@ -2,6 +2,8 @@ package com.example.simulator.controller;
 
 import com.example.simulator.DTOs.*;
 import com.example.simulator.configurations.response.ResponseData;
+import com.example.simulator.greenhouse.Greenhouse;
+import com.example.simulator.greenhouse.GreenhousesData;
 import com.example.simulator.greenhouse.devices.water.Water;
 import com.example.simulator.greenhouse.simulators.SimulationType;
 import com.example.simulator.service.GreenhouseService;
@@ -13,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api/v1/greenhouses/{greenhouseId}")
@@ -106,6 +110,5 @@ public class GreenhouseController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
 
-    // TODO: 24/10/2023 dodać zbiorczy endpoint dla odczytów wszystkich szklarni na raz
 }
 
