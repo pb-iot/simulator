@@ -19,4 +19,13 @@ public class CurrentUnits {
     private String humidity2m;
     private String apparentTemperature;
     private String isDay;
+
+    @SerializedName("shortwave_radiation")
+    private String shortwaveRadiation;
+
+    @SerializedName("direct_radiation")
+    private String directRadiation;
+
+    @SerializedName("diffuse_radiation")
+    private String diffuseRadiation;
 }
