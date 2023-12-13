@@ -2,6 +2,7 @@ package com.example.simulator.utils.forecast;
 
 import com.example.simulator.exceptions.api.WeatherForecastException;
 import com.example.simulator.utils.forecast.data.CurrentWeather;
+import com.example.simulator.utils.forecast.data.HourlyData;
 import com.example.simulator.utils.forecast.data.WeatherData;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -74,7 +75,28 @@ public class WeatherForecast {
             String stringBody = response.getBody();
             WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
             return weatherData.getCurrent();
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        throw new WeatherForecastException();
+    }
+
+    public HourlyData getSoilTemperature() {
+        try {
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create();
+
+            HttpResponse<String> response = Unirest.get(urlForecast)
+                    .queryString("latitude", latitude)
+                    .queryString("longitude", longitude)
+                    .queryString("hourly", "soil_temperature_6cm")
+                    .asString();
+
+            String stringBody = response.getBody();
+            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
+            return weatherData.getHourly();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         throw new WeatherForecastException();
