@@ -1,21 +1,32 @@
 package com.example.simulator.service;
 
-import com.example.simulator.DTOs.*;
+import org.springframework.stereotype.Service;
+
+import com.example.simulator.DTOs.AirConditioningDTO;
+import com.example.simulator.DTOs.Co2DispenserDTO;
+import com.example.simulator.DTOs.LightDTO;
+import com.example.simulator.DTOs.SensorValueDTO;
+import com.example.simulator.DTOs.UpdateHumidifierDTO;
+import com.example.simulator.DTOs.UpdateSalinityDeviceDTO;
+import com.example.simulator.DTOs.WaterDTO;
 import com.example.simulator.greenhouse.Greenhouse;
 import com.example.simulator.greenhouse.GreenhousesData;
-import com.example.simulator.greenhouse.simulators.*;
-import org.springframework.stereotype.Service;
+import com.example.simulator.greenhouse.simulators.Co2Simulation;
+import com.example.simulator.greenhouse.simulators.HumiditySimulation;
+import com.example.simulator.greenhouse.simulators.ParSimulation;
+import com.example.simulator.greenhouse.simulators.SalinitySimulation;
+import com.example.simulator.greenhouse.simulators.SimulationType;
+import com.example.simulator.greenhouse.simulators.TemperatureSimulation;
+import com.example.simulator.greenhouse.simulators.WaterSimulation;
 
 @Service
 public class GreenhouseService {
-
 
     public void addSimulation(Integer greenhouseId, SimulationType type) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
         greenhouse.addSimulation(type);
     }
-
 
     public void deleteSimulation(Integer greenhouseId, SimulationType type) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
@@ -32,7 +43,8 @@ public class GreenhouseService {
     public void setAirConditioningValue(Integer greenhouseId, AirConditioningDTO airConditioningDTO) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
-        TemperatureSimulation temperatureSimulation = (TemperatureSimulation) greenhouse.getSimulation(SimulationType.TEMPERATURE);
+        TemperatureSimulation temperatureSimulation = (TemperatureSimulation) greenhouse.getSimulation(
+                SimulationType.TEMPERATURE);
         temperatureSimulation.setAirConditioningValue(airConditioningDTO);
     }
 
@@ -50,7 +62,7 @@ public class GreenhouseService {
         simulation.setWaterLevel(dto);
     }
 
-    public void setLight(Integer greenhouseId, LightDTO dto){
+    public void setLight(Integer greenhouseId, LightDTO dto) {
         Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
 
         ParSimulation simulation = (ParSimulation) greenhouse.getSimulation(SimulationType.PAR);
@@ -62,5 +74,12 @@ public class GreenhouseService {
 
         SalinitySimulation simulation = (SalinitySimulation) greenhouse.getSimulation(SimulationType.SALINITY);
         simulation.setSalinityDeviceState(dto);
+    }
+
+    public void setCo2Dispenser(Integer greenhouseId, Co2DispenserDTO dto) {
+        Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
+
+        Co2Simulation co2Simulation = (Co2Simulation) greenhouse.getSimulation(SimulationType.CO2);
+        co2Simulation.setCo2DispenserSwitch(dto);
     }
 }

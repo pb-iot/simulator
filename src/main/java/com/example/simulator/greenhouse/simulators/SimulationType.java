@@ -7,14 +7,14 @@ public enum SimulationType {
     HUMIDITY(HumiditySimulation::new),
     WATER(WaterSimulation::new),
     PAR(ParSimulation::new),
-    SALINITY(SalinitySimulation::new);
+    SALINITY(SalinitySimulation::new),
+    CO2(Co2Simulation::new);
 
     private final Supplier<Simulable> simulationSupplier;
 
     SimulationType(Supplier<Simulable> simulationSupplier) {
         this.simulationSupplier = simulationSupplier;
     }
-
 
     public Simulable getSimulable() {
         return simulationSupplier.get();
