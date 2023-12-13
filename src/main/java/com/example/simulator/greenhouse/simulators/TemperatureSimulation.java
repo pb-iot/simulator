@@ -46,8 +46,10 @@ public class TemperatureSimulation implements Simulable {
     }
 
     private double getAirConditioningChange() {
-        double randomTemperature = generateRandomDoubleFromRange(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
+        if (temperatureSensor.getValue() > AirConditioning.MAX_TEMPERATURE || temperatureSensor.getValue() < AirConditioning.MIN_TEMPERATURE)
+            return 0;
 
+        double randomTemperature = generateRandomDoubleFromRange(RANGE_MIN_TEMP, RANGE_MAX_TEMP) * airConditioning.getPowerLevel().getGrownBonus();
         return randomTemperature * airConditioning.getAction().getAction();
     }
 
