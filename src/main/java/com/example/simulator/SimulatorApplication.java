@@ -24,7 +24,7 @@ public class SimulatorApplication {
 			greenhouseService.addSimulation(0, SimulationType.PAR);
 			greenhouseService.addSimulation(0, SimulationType.WATER);
 			greenhouseService.addSimulation(0, SimulationType.TEMPERATURE);
-
+			greenhouseService.addSimulation(0, SimulationType.SALINITY);
 		};
 	}
 

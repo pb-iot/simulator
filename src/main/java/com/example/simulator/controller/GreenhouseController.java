@@ -110,5 +110,16 @@ public class GreenhouseController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = "SIMULATION_OF_GIVEN_TYPE_DOES_NOT_EXIST"),
+            @ApiResponse(responseCode = "404", description = "GREENHOUSE_DOES_NOT_EXIST")
+    })
+    @Operation(summary = "It is used to manage the salinity of soil")
+    @PutMapping(path = "/setSalinityValue", produces = "application/json")
+    public ResponseEntity<ResponseData> setSalinityValue(@PathVariable Integer greenhouseId, @Validated @RequestBody UpdateSalinityDeviceDTO dto) {
+        greenhouseService.setSalinityValue(greenhouseId, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
+    }
 }
 

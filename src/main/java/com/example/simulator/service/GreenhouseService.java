@@ -56,4 +56,11 @@ public class GreenhouseService {
         ParSimulation simulation = (ParSimulation) greenhouse.getSimulation(SimulationType.PAR);
         simulation.setLightSwitch(dto);
     }
+
+    public void setSalinityValue(Integer greenhouseId, UpdateSalinityDeviceDTO dto){
+        Greenhouse greenhouse = GreenhousesData.getInstance().getGreenhouse(greenhouseId);
+
+        SalinitySimulation simulation = (SalinitySimulation) greenhouse.getSimulation(SimulationType.SALINITY);
+        simulation.setSalinityDeviceState(dto);
+    }
 }
