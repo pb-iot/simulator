@@ -4,6 +4,7 @@
 - ondreo - Andrzej Zamora
 - RafZab - Rafał Zaborowski
 - konrad121970 - Konrad Pawlenko
+- Jaaaaaxi - Hubert Waśniewski
   
 # External API used:
 
