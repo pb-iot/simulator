@@ -16,7 +16,4 @@ public class SimulatorService {
                 .forEach(Greenhouse::simulateAll);
     }
 
-//    private double increaseTemperature(){
-//
-//    }
 }
