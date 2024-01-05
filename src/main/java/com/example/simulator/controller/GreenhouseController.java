@@ -22,10 +22,8 @@ public class GreenhouseController {
     @Autowired
     private GreenhouseService greenhouseService;
 
-
-
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = SwaggerDescription.SIMULATION_ALREADY_ADDED),
+            @ApiResponse(responseCode = "201"),
             @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
@@ -38,7 +36,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.DELETE_SIMULATION_DESCRIPTION)
@@ -50,7 +49,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.GET_SIMULATION_VALUE_DESCRIPTION)
@@ -62,7 +62,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_AIR_CONDITIONING_DESCRIPTION)
@@ -74,7 +75,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_HUMIDITY_DESCRIPTION)
@@ -86,7 +88,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_WATER_LEVEL_DESCRIPTION)
@@ -98,7 +101,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_LIGHT_DESCRIPTION)
@@ -110,7 +114,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_CO2_DISPENSER_DESCRIPTION)
@@ -122,7 +127,8 @@ public class GreenhouseController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.SET_SALINITY_DESCRIPTION)
