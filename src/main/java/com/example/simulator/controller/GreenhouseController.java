@@ -24,7 +24,7 @@ public class GreenhouseController {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201"),
-            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_ALREADY_ADDED),
             @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
     @Operation(summary = SwaggerDescription.ADD_SIMULATION_DESCRIPTION)
