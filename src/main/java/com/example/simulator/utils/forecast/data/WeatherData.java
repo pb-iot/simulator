@@ -18,6 +18,7 @@ public class WeatherData {
     private String timezoneAbbreviation;
     private double elevation;
 
+    private HourlyData hourly;
     private CurrentUnits currentUnits;
     private CurrentWeather current;
 }

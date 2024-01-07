@@ -137,4 +137,15 @@ public class GreenhouseController {
         greenhouseService.setSalinityValue(greenhouseId, dto);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
     }
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
+    })
+    @Operation(summary = SwaggerDescription.SET_UNDERFLOOR_HEATING)
+    @PutMapping(path = "/setUnderfloorHeating", produces = "application/json")
+    public ResponseEntity<ResponseData> setUnderfloorHeating(@PathVariable Integer greenhouseId, @Validated @RequestBody UnderfloorHeatingDTO dto) {
+        greenhouseService.setUnderfloorHeating(greenhouseId, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseData<>());
+    }
 }

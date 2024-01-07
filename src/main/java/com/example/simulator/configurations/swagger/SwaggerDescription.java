@@ -11,6 +11,7 @@ public class SwaggerDescription {
     public static final String SET_LIGHT_DESCRIPTION = "It is used to manage the amount of light in the greenhouse";
     public static final String SET_CO2_DISPENSER_DESCRIPTION = "It is used to manage the amount of CO2 in the greenhouse";
     public static final String SET_SALINITY_DESCRIPTION = "It is used to manage the salinity of soil";
+    public static final String SET_UNDERFLOOR_HEATING = "It is used to manage the salinity of soil";
 
     public static final String SIMULATION_ALREADY_ADDED = "Simulation already added";
     public static final String SIMULATION_DOES_NOT_EXIST = "Simulation of the given type does not exist";
