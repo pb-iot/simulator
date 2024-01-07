@@ -1,23 +1,10 @@
 package com.example.simulator.service;
 
-import org.springframework.stereotype.Service;
-
-import com.example.simulator.DTOs.AirConditioningDTO;
-import com.example.simulator.DTOs.Co2DispenserDTO;
-import com.example.simulator.DTOs.LightDTO;
-import com.example.simulator.DTOs.SensorValueDTO;
-import com.example.simulator.DTOs.UpdateHumidifierDTO;
-import com.example.simulator.DTOs.UpdateSalinityDeviceDTO;
-import com.example.simulator.DTOs.WaterDTO;
+import com.example.simulator.DTOs.*;
 import com.example.simulator.greenhouse.Greenhouse;
 import com.example.simulator.greenhouse.GreenhousesData;
-import com.example.simulator.greenhouse.simulators.Co2Simulation;
-import com.example.simulator.greenhouse.simulators.HumiditySimulation;
-import com.example.simulator.greenhouse.simulators.ParSimulation;
-import com.example.simulator.greenhouse.simulators.SalinitySimulation;
-import com.example.simulator.greenhouse.simulators.SimulationType;
-import com.example.simulator.greenhouse.simulators.TemperatureSimulation;
-import com.example.simulator.greenhouse.simulators.WaterSimulation;
+import com.example.simulator.greenhouse.simulators.*;
+import org.springframework.stereotype.Service;
 
 @Service
 public class GreenhouseService {

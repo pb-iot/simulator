@@ -139,10 +139,10 @@ public class GreenhouseController {
     }
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200"),
-            @ApiResponse(responseCode = "400", description = "SIMULATION_OF_GIVEN_TYPE_DOES_NOT_EXIST"),
-            @ApiResponse(responseCode = "404", description = "GREENHOUSE_DOES_NOT_EXIST")
+            @ApiResponse(responseCode = "400", description = SwaggerDescription.SIMULATION_DOES_NOT_EXIST),
+            @ApiResponse(responseCode = "404", description = SwaggerDescription.GREENHOUSE_DOES_NOT_EXIST)
     })
-    @Operation(summary = "It is used to turn on or turn off underfloor heating in the greenhouse")
+    @Operation(summary = SwaggerDescription.SET_UNDERFLOOR_HEATING)
     @PutMapping(path = "/setUnderfloorHeating", produces = "application/json")
     public ResponseEntity<ResponseData> setUnderfloorHeating(@PathVariable Integer greenhouseId, @Validated @RequestBody UnderfloorHeatingDTO dto) {
         greenhouseService.setUnderfloorHeating(greenhouseId, dto);
