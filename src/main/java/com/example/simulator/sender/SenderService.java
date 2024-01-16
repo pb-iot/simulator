@@ -14,7 +14,7 @@ import java.util.HashMap;
 @Service
 public class SenderService {
 
-    private final static String url = "zamienic an link z backendu";
+    private final static String url = "https://gm-api.wvffle.net/graphql";
 
     @Scheduled(cron = "0/10 * * * * *") // co 5 sekund - na czas developmentu
     public void sendAllMeasurementsToTheBackend() {
