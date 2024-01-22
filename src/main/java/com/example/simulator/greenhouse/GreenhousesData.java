@@ -14,7 +14,7 @@ public class GreenhousesData {
 
     private GreenhousesData() {
         greenhouseList = new HashMap<>();
-        greenhouseList.put(0, new Greenhouse());
+        greenhouseList.put(1, new Greenhouse());
     }
 
     public static GreenhousesData getInstance() {

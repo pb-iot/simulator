@@ -20,11 +20,13 @@ public class SimulatorApplication {
 	public CommandLineRunner loadData(GreenhouseService greenhouseService) {
 
 		return (args) -> {
-			greenhouseService.addSimulation(0, SimulationType.HUMIDITY);
-			greenhouseService.addSimulation(0, SimulationType.PAR);
-			greenhouseService.addSimulation(0, SimulationType.WATER);
-			greenhouseService.addSimulation(0, SimulationType.TEMPERATURE);
-			greenhouseService.addSimulation(0, SimulationType.SALINITY);
+			greenhouseService.addSimulation(1, SimulationType.HUMIDITY);
+			greenhouseService.addSimulation(1, SimulationType.PAR);
+			greenhouseService.addSimulation(1, SimulationType.WATER);
+			greenhouseService.addSimulation(1, SimulationType.TEMPERATURE);
+			greenhouseService.addSimulation(1, SimulationType.SALINITY);
+			greenhouseService.addSimulation(1, SimulationType.TEMPERATURE_SOIL);
+			greenhouseService.addSimulation(1, SimulationType.CO2);
 		};
 	}
 
