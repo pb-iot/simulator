@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.graphql.client.HttpGraphQlClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -36,9 +35,9 @@ public class SenderService {
                         "https://gm-api.wvffle.net"))
                 .build();
 
-        HttpGraphQlClient graphQlClient =
-                HttpGraphQlClient.builder(client)
-                        .build();
+        // HttpGraphQlClient graphQlClient =
+        //         HttpGraphQlClient.builder(client)
+        //                 .build();
 
         String query = "mutation createEnvironment($greenhouse: Int!, $date: DateTime!, $temperature: Decimal!, $airHumidity: Decimal!, $lightLevel: Decimal!, $par: Decimal!, $co2Level: Decimal!, $soilMoistureLevel: Decimal!, $soilSalinity: Decimal!, $soilTemperature: Decimal!, $weightOfSoilAndPlants: Decimal!, $stemMicroVariability: Decimal!){\n" +
                 "    createEnvironment(input: {greenhouse: $greenhouse, date: $date, temperature: $temperature, airHumidity: $airHumidity, lightLevel: $lightLevel, par: $par, co2Level: $co2Level, soilMoistureLevel: $soilMoistureLevel, soilSalinity: $soilSalinity, soilTemperature: $soilTemperature, weightOfSoilAndPlants: $weightOfSoilAndPlants, stemMicroVariability: $stemMicroVariability\n" +
