@@ -14,92 +14,67 @@ public class WeatherForecast {
 
     public static final String urlForecast = "https://api.open-meteo.com/v1/forecast";
 
-    // TODO: latitude and longitude move to greenhouse
     public static final Double latitude = 53.1221; // 53.1221 - Białystok, 25.2744 - Australia
     public static final Double longitude = 23.1443; // 23.1443 - Białystok, 133.7751 - Australia
 
+    public static WeatherData weatherData = null;
 
-    public CurrentWeather getActualTemperature() {
-        try{
-            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                    .create();
-
-            HttpResponse<String> response = Unirest.get(urlForecast)
-                    .queryString("latitude", latitude)
-                    .queryString("longitude", longitude)
-                    .queryString("current", "temperature_2m,apparent_temperature,is_day")
-                    .asString();
-
-            String stringBody = response.getBody();
-            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
-            return weatherData.getCurrent();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        throw new WeatherForecastException();
-    }
-
-    public CurrentWeather getHumidity() {
-        try{
-            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                    .create();
-
-            HttpResponse<String> response = Unirest.get(urlForecast)
-                    .queryString("latitude", latitude)
-                    .queryString("longitude", longitude)
-                    .queryString("current", "relative_humidity_2m")
-                    .asString();
-
-            String stringBody = response.getBody();
-            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
-            return weatherData.getCurrent();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        throw new WeatherForecastException();
-    }
-    public CurrentWeather getParData() {
-        try{
-            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                    .create();
-
-            HttpResponse<String> response = Unirest.get(urlForecast)
-                    .queryString("latitude", latitude)
-                    .queryString("longitude", longitude)
-                    .queryString("current", "shortwave_radiation,direct_radiation,diffuse_radiation")
-                    .asString();
-
-            String stringBody = response.getBody();
-            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
-            return weatherData.getCurrent();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        throw new WeatherForecastException();
-    }
-
-    public HourlyData getSoilTemperature() {
+    public static void updateWeatherDataFromAPI() {
         try {
             Gson gson = new GsonBuilder()
                     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                     .create();
 
             HttpResponse<String> response = Unirest.get(urlForecast)
-                    .queryString("latitude", latitude)
-                    .queryString("longitude", longitude)
-                    .queryString("hourly", "soil_temperature_6cm")
-                    .asString();
+                                                   .queryString("latitude", latitude)
+                                                   .queryString("longitude", longitude)
+                                                   .queryString("current",
+                                                                "temperature_2m,"
+                                                                        + "apparent_temperature,"
+                                                                        + "is_day,"
+                                                                        + "relative_humidity_2m,"
+                                                                        + "shortwave_radiation,"
+                                                                        + "direct_radiation,"
+                                                                        + "diffuse_radiation")
+                                                   .queryString("hourly", "soil_temperature_6cm")
+                                                   .asString();
 
             String stringBody = response.getBody();
-            WeatherData weatherData = gson.fromJson(stringBody, WeatherData.class);
-            return weatherData.getHourly();
+            weatherData = gson.fromJson(stringBody, WeatherData.class);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new WeatherForecastException();
         }
-        throw new WeatherForecastException();
     }
 
+    public CurrentWeather getActualTemperature() {
+        if (weatherData == null) {
+            updateWeatherDataFromAPI();
+        }
+
+        return weatherData.getCurrent();
+    }
+
+    public CurrentWeather getHumidity() {
+        if (weatherData == null) {
+            updateWeatherDataFromAPI();
+        }
+
+        return weatherData.getCurrent();
+    }
+
+    public CurrentWeather getParData() {
+        if (weatherData == null) {
+            updateWeatherDataFromAPI();
+        }
+
+        return weatherData.getCurrent();
+    }
+
+    public HourlyData getSoilTemperature() {
+        if (weatherData == null) {
+            updateWeatherDataFromAPI();
+        }
+
+        return weatherData.getHourly();
+    }
 }
