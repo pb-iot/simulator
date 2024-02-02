@@ -12,6 +12,7 @@ public class SimulatorService {
     @Scheduled(cron = "0/1 * * * * *")
     public void simulate() {
         GreenhousesData greenhousesData = GreenhousesData.getInstance();
+        String elo ="";
         greenhousesData.getGreenhouseList().values()
                 .forEach(Greenhouse::simulateAll);
     }
