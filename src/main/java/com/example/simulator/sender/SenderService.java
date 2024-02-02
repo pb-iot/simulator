@@ -111,5 +111,6 @@ public class SenderService {
         public Double soilTemperature;
         public Double weightOfSoilAndPlants;
         public Double stemMicroVariability;
+        public String test2;
     }
 }
