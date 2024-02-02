@@ -13,4 +13,5 @@ public class GraphqlRequestBody {
 
     private String query;
     private Object variables;
+    private String test;
 }
